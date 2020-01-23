@@ -38,8 +38,7 @@ app.delete('/owce/:ID', function (req, res) {
 // dodać edycję owiec 
 app.patch('/owce/:ID', function (req,res){
   const owca = owce.find(owca => owca.ID == req.params.ID)
-  // owca do edycji - owca
-  // wszystkie parametry które są w req.body mają nadpisać owcę
+  if(typeof req.body.Age !== "undefined") owca.Age = req.body.Age;
   res.json(owca);
 })
 

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h3>System teleinformatyczny <strike>obozu Aushwitz-Birkenau</strike> firmy Owca-INC</h3>
+    <h4>Informacje o <strike>więźniach</strike> owcach:</h4>
+    <select name="newLocation" id="newLocation">
+		<option value="chatka">chatka</option> 
+		<option value="pastwisko">pastwisko</option> 
+		<option value="szpital">szpital</option> 
+		<option value="fryzjer">fryzjer</option> 
+		<option value="produkcja">produkcja</option> 
+		<option value="parking">parking</option> 
+		<option value="rampa1">rampa1</option> 
+		<option value="rampa2">rampa2</option> 
+    </select>
+    <input type="text" id="owcaID">
+    <button type="button" id="changeLocation">Zatwierdź kremacje</button>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+    <script>
+    async function send(e) {
+			const id = document.querySelector("#owcaID").value;
+			const location = document.querySelector("#newLocation").value;
+			fetch(`/owce/${id}`, {
+				body: JSON.stringify({
+					location
+				}),
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				method:"PATCH"
+			})
+		}
+
+		const btn = document.querySelector("#changeLocation");
+		btn.addEventListener("click", send);
+    </script>
+</body>
+</html>
